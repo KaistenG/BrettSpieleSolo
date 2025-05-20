@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "141286912855",
+    "project_id": "kaisoloapp",
+    "firebase_url": "https://kaisoloapp-default-rtdb.europe-west1.firebasedatabase.app",
+    "storage_bucket": "kaisoloapp.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:141286912855:android:719241677dc19077038412",
+        "android_client_info": {
+          "package_name": "com.example.kaisoloapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-rtcHDI4JOOyImmAxzi58QH2n8ALYQNE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

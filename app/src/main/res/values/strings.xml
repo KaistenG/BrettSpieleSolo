@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">KaiSoloApp</string>
+    <string name="login_name">Name eingeben</string>
+    <string name="login_ort">Wohnort eingeben</string>
+    <string name="login_handynummer">Handynummer eingeben</string>
+    <string name="login_einloggen">Los geht\'s!</string>
+    <string name="spiele_uebersicht">Spieleliste</string>
+    <string name="spiele_hinzufuegen">Spiele hier hinzufügen</string>
+</resources>
