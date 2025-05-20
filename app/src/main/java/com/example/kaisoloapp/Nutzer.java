@@ -6,15 +6,17 @@ public class Nutzer {
 
     private String handynummer;
     private boolean host;
+    private long createdAt;
 
     public Nutzer() {
     }
 
-    public Nutzer(String name, String ort, String handynummer, boolean host) {
+    public Nutzer(String name, String ort, String handynummer, boolean host, Long createdAt) {
         this.name = name;
         this.ort = ort;
         this.handynummer = handynummer;
         this.host = host;
+        this.createdAt = createdAt;
     }
 
 
@@ -49,5 +51,14 @@ public class Nutzer {
 
     public void setHost(boolean host) {
         this.host = host;
+    }
+
+    //Zeitstempel zum Auswählen des nächsten Hosts
+    public Long getCreatedAt() { //ÄNDERUNG
+        return createdAt;
+    }
+
+    public void setCreatedAt(Long createdAt) { //ÄNDERUNG
+        this.createdAt = createdAt;
     }
 }

@@ -103,14 +103,14 @@ public class HauptActivity extends BaseActivity {
                 }
             });
 
-            // ECHTZEIT: Listener für den Ort des Nutzers hinzufügen
-            userLocationListener = new ValueEventListener() {  //EINGEFÜGT
+            //Listener für den Ort des Nutzers hinzufügen
+            userLocationListener = new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     // Ort des aktuellen Nutzers lesen und anzeigen
                     String ort = snapshot.child("ort").getValue(String.class);
                     if (ort != null) {
-                        textViewLocation.setText("Ort: " + ort); //ÄNDERUNG: Echtzeit Aktualisierung des Ortes
+                        textViewLocation.setText("Ort: " + ort); //Echtzeit Aktualisierung des Ortes
                     } else {
                         textViewLocation.setText("Ort: Nicht verfügbar");
                     }
@@ -121,7 +121,7 @@ public class HauptActivity extends BaseActivity {
                     Log.e("Firebase", "Fehler beim Lesen des Orts", error.toException());
                 }
             };
-            userRef.addValueEventListener(userLocationListener); //EINGEFÜGT
+            userRef.addValueEventListener(userLocationListener);
         }
 
         DatabaseReference globalMeetingRef = FirebaseDatabase.getInstance().getReference("meeting");
@@ -151,8 +151,8 @@ public class HauptActivity extends BaseActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (userRef != null && userLocationListener != null) {  //EINGEFÜGT
-            userRef.removeEventListener(userLocationListener);  //EINGEFÜGT
+        if (userRef != null && userLocationListener != null) {
+            userRef.removeEventListener(userLocationListener);
         }
     }
 
