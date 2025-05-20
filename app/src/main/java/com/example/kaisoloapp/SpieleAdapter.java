@@ -4,6 +4,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.util.Log;
@@ -14,6 +15,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.*;
 
 import java.util.List;
+
+import android.app.AlertDialog;
 
 public class SpieleAdapter extends RecyclerView.Adapter<SpieleAdapter.ViewHolder> {
 
@@ -123,6 +126,21 @@ public class SpieleAdapter extends RecyclerView.Adapter<SpieleAdapter.ViewHolder
                     @Override
                     public void onCancelled(DatabaseError error) {}
                 });
+        // 🗑️ Spiel löschen
+        holder.btnDelete.setOnClickListener(v -> {
+            new AlertDialog.Builder(v.getContext())
+                    .setTitle("Spiel löschen")
+                    .setMessage("Möchtest du \"" + spiel.getName() + "\" wirklich löschen?")
+                    .setPositiveButton("Löschen", (dialog, which) -> {
+                        spieleRef.child(spiel.getId()).removeValue()
+                                .addOnSuccessListener(aVoid ->
+                                        Toast.makeText(v.getContext(), "Spiel gelöscht", Toast.LENGTH_SHORT).show())
+                                .addOnFailureListener(e ->
+                                        Toast.makeText(v.getContext(), "Fehler beim Löschen", Toast.LENGTH_SHORT).show());
+                    })
+                    .setNegativeButton("Abbrechen", null)
+                    .show();
+        });
     }
 
     @Override
@@ -148,12 +166,14 @@ public class SpieleAdapter extends RecyclerView.Adapter<SpieleAdapter.ViewHolder
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView spielName, voteCount;
         CheckBox voteCheckBox;
+        ImageButton btnDelete;
 
         public ViewHolder(View itemView) {
             super(itemView);
             spielName = itemView.findViewById(R.id.spielName);
             voteCount = itemView.findViewById(R.id.voteCount);
             voteCheckBox = itemView.findViewById(R.id.checkBoxVote);
+            btnDelete = itemView.findViewById(R.id.btnDelete);
         }
     }
 }

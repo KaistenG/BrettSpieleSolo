@@ -1,9 +1,12 @@
 <resources>
-    <string name="app_name">KaiSoloApp</string>
+    <string name="app_name">Board-Gamer-App</string>
     <string name="login_name">Name eingeben</string>
     <string name="login_ort">Wohnort eingeben</string>
     <string name="login_handynummer">Handynummer eingeben</string>
     <string name="login_einloggen">Los geht\'s!</string>
     <string name="spiele_uebersicht">Spieleliste</string>
     <string name="spiele_hinzufuegen">Spiele hier hinzufügen</string>
+    <string name="add_game">Spiel hinzufügen</string>
+    <string name="game_delete">Löschen</string>
+    <string name="welcome_login">Hey,\nschön, dass du hier bist!</string>
 </resources>

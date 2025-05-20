@@ -16,42 +16,45 @@
         app:layout_constraintTop_toTopOf="parent"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
+
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="331dp"
-        android:layout_height="37dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:textSize="20sp"
+        android:textStyle="bold"
         android:text="@string/spiele_uebersicht"
-        android:gravity="center"
-        app:layout_constraintBottom_toTopOf="@+id/spieleRecyclerView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/navigationToolbar" />
+        app:layout_constraintTop_toBottomOf="@id/navigationToolbar"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/spieleRecyclerView"
         android:layout_width="393dp"
-        android:layout_height="592dp"
-        android:layout_marginTop="1dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/navigationToolbar" />
-
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_add"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="624dp"
-        android:contentDescription="@string/spiele_hinzufuegen"
+        app:layout_constraintTop_toBottomOf="@id/textView2"
+        app:layout_constraintBottom_toTopOf="@id/fab_add"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"  />
+
+    <Button
+        android:id="@+id/fab_add"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="16dp"
         android:singleLine="true"
-        android:src="@drawable/addicon"
-        app:layout_constraintEnd_toEndOf="@+id/navigationToolbar"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="@+id/navigationToolbar"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="@string/add_game"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:cornerRadius="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.281"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spieleRecyclerView" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
