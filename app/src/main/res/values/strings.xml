@@ -9,4 +9,6 @@
     <string name="add_game">Spiel hinzufügen</string>
     <string name="game_delete">Löschen</string>
     <string name="welcome_login">Hey,\nschön, dass du hier bist!</string>
+    <string name="sms_text_verspaetung">Ich komme später zum Spieleabend, sorry!</string>
+
 </resources>

@@ -32,6 +32,15 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.TimeZone;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.telephony.SmsManager;
+import android.widget.Toast;
+
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -57,6 +66,9 @@ public class HauptActivity extends BaseActivity {
     // Datum nächstes Treffen
     private Calendar nextMeetingDate = Calendar.getInstance(TimeZone.getTimeZone("Europe/Berlin"));
 
+
+    private static final int SMS_PERMISSION_CODE = 123;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,6 +90,17 @@ public class HauptActivity extends BaseActivity {
         // Initialisieren des AddMeeting Buttons
         Button buttonSetMeeting = findViewById(R.id.buttonAddMeeting);
         buttonSetMeeting.setOnClickListener(v -> meetingDateTimePicker());
+
+        // Button für SMS-Versand; löst Methode zum Senden aus, wenn Berechtigung da ist
+        Button smsButton = findViewById(R.id.btn_sms);
+        smsButton.setOnClickListener(v -> {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS)
+                    != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.SEND_SMS}, SMS_PERMISSION_CODE);
+            } else {
+                sendeSmsAnAlleTeilnehmer();
+            }
+        });
 
         // Holen des aktuellen Benutzers
         FirebaseUser userWelcome = FirebaseAuth.getInstance().getCurrentUser();
@@ -291,4 +314,45 @@ public class HauptActivity extends BaseActivity {
         datePickerDialog.show();
     }
 
+    // SMS an alle Telefonnummern in Firebase
+    private void sendeSmsAnAlleTeilnehmer() {
+        DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference("users");
+
+        usersRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                SmsManager smsManager = SmsManager.getDefault();
+                int gesendet = 0;
+
+                for (DataSnapshot userSnapshot : snapshot.getChildren()) {
+                    String handynummer = userSnapshot.child("handynummer").getValue(String.class);
+                    if (handynummer != null && !handynummer.isEmpty()) {
+                        smsManager.sendTextMessage(handynummer, null, getString(R.string.sms_text_verspaetung), null, null);
+                        gesendet++;
+                    }
+                }
+
+                Toast.makeText(HauptActivity.this, "SMS an " + gesendet + " Teilnehmer gesendet", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(HauptActivity.this, "Fehler beim Laden der Telefonnummern", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    // Ergebnis der Berechtigungsanfrage für SMS
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == SMS_PERMISSION_CODE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                sendeSmsAnAlleTeilnehmer();
+            } else {
+                Toast.makeText(this, "SMS-Berechtigung abgelehnt", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
 }

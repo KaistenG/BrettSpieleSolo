@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/hauptLayout"
+    android:padding="16dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -98,5 +99,18 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textViewReminder" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_sms"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Ich verspäte mich"
+        android:textSize="18sp"
+        app:cornerRadius="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="8dp"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
