@@ -369,7 +369,6 @@ public class HauptActivity extends BaseActivity {
 
         // Initialisieren des AddMeeting Buttons
         Button buttonSetMeeting = findViewById(R.id.buttonAddMeeting);
-        buttonSetMeeting.setOnClickListener(v -> meetingDateTimePicker());
         buttonSetMeeting.setVisibility(View.GONE);  // ÄNDERUNG: Button erstmal verstecken
 
         //Automatisches aktualisieren der UI
@@ -410,8 +409,6 @@ public class HauptActivity extends BaseActivity {
                 }
             });
 
-            // ECHTZEIT: Listener für den Ort des Nutzers hinzufügen
-            userLocationListener = new ValueEventListener() {  //EINGEFÜGT
             // Prüfen, ob Nutzer Host ist, um buttonSetMeeting sichtbar zu machen und OnClickListener zu setzen
             hostStatusListener = new ValueEventListener() {
                 @Override
@@ -445,7 +442,6 @@ public class HauptActivity extends BaseActivity {
                     // Ort des aktuellen Nutzers lesen und anzeigen
                     String ort = snapshot.child("ort").getValue(String.class);
                     if (ort != null) {
-                        textViewLocation.setText("Ort: " + ort); //ÄNDERUNG: Echtzeit Aktualisierung des Ortes
                         textViewLocation.setText("Ort: " + ort); //Echtzeit Aktualisierung des Ortes
                     } else {
                         textViewLocation.setText("Ort: Nicht verfügbar");
@@ -457,7 +453,6 @@ public class HauptActivity extends BaseActivity {
                     Log.e("Firebase", "Fehler beim Lesen des Orts", error.toException());
                 }
             };
-            userRef.addValueEventListener(userLocationListener); //EINGEFÜGT
             userRef.addValueEventListener(userLocationListener);
         }
 
@@ -488,8 +483,6 @@ public class HauptActivity extends BaseActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (userRef != null && userLocationListener != null) {  //EINGEFÜGT
-            userRef.removeEventListener(userLocationListener);  //EINGEFÜGT
         if (userRef != null && userLocationListener != null) {
             userRef.removeEventListener(userLocationListener);
             userRef.removeEventListener(hostStatusListener);
@@ -522,8 +515,6 @@ public class HauptActivity extends BaseActivity {
                     currentData.child("timestamp").setValue(newMeetingDate.getTimeInMillis());
                     currentData.child("date").setValue(formattedDate);
                     currentData.child("time").setValue(formattedTime);
-                    currentData.child("location").setValue("Bei Richard");
-                   // currentData.child("created_by").setValue(user.getUid());
                     //currentData.child("location").setValue("Bei Richard");
                     // currentData.child("created_by").setValue(user.getUid());
                     return com.google.firebase.database.Transaction.success(currentData);
@@ -551,7 +542,6 @@ public class HauptActivity extends BaseActivity {
         Calendar dateToday = Calendar.getInstance(TimeZone.getTimeZone("Europe/Berlin"));
         long millisUntilMeeting = nextMeetingDate.getTimeInMillis() - dateToday.getTimeInMillis();
 
-        if (millisUntilMeeting >0){
 
         if (millisUntilMeeting > 0) {
             long seconds = millisUntilMeeting / 1000;
@@ -568,7 +558,6 @@ public class HauptActivity extends BaseActivity {
             textViewCountdown.setText(countdown);
 
             //reminder der nur angezeigt wird, wenn es weniger als 3 Tage sind
-            if (days < 3){
             if (days < 3) {
                 textViewReminder.setText("Erinnerung: Das nächste Treffen ist bald!");
                 textViewReminder.setVisibility(View.VISIBLE);
@@ -621,16 +610,12 @@ public class HauptActivity extends BaseActivity {
 
         // dynamisch formatierte Uhrzeit
         SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm 'Uhr'", Locale.GERMAN);
-        timeFormat.setTimeZone(TimeZone.getTimeZone("Europe/Berlin")); //Zeitzone auf Berlin setzen
         timeFormat.setTimeZone(TimeZone.getTimeZone("Europe/Berlin")); // Zeitzone auf Berlin setzen
         String sdfTime = timeFormat.format(nextMeetingDate.getTime());
         textViewTime.setText("Uhrzeit: " + sdfTime);
 
         Log.d("DEBUG", "Aufruf ladeUndZeigeGastgeber");
         ladeUndZeigeGastgeber(textViewLocation);
-        String reminder = "Erinnerung: Das nächste Treffen ist bald!";
-
-        textViewReminder.setText(reminder);
 
     }
 
@@ -713,7 +698,7 @@ public class HauptActivity extends BaseActivity {
             }
         }
     }
-}}
+}
 =======
 }
 >>>>>>> kaibranch-eventerstellen
