@@ -101,7 +101,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textViewReminder" />
 
-<<<<<<< HEAD
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_sms"
         android:layout_width="0dp"
@@ -114,7 +113,7 @@
         app:layout_constraintStart_toStartOf="parent"
         android:layout_margin="8dp"
         />
-=======
+
     <Button
         android:id="@+id/btnBewertungStarten"
         android:layout_width="wrap_content"
@@ -128,6 +127,5 @@
         android:padding="16dp"
         android:textSize="16sp" />
 
->>>>>>> kaibranch-eventerstellen
 
 </androidx.constraintlayout.widget.ConstraintLayout>
