@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/hauptLayout"
     android:padding="16dp"
     android:layout_width="match_parent"
@@ -100,6 +101,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textViewReminder" />
 
+<<<<<<< HEAD
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_sms"
         android:layout_width="0dp"
@@ -112,5 +114,20 @@
         app:layout_constraintStart_toStartOf="parent"
         android:layout_margin="8dp"
         />
+=======
+    <Button
+        android:id="@+id/btnBewertungStarten"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="60dp"
+        android:text="Nächstes Event starten + Bewertung"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="gone"
+        android:padding="16dp"
+        android:textSize="16sp" />
+
+>>>>>>> kaibranch-eventerstellen
 
 </androidx.constraintlayout.widget.ConstraintLayout>

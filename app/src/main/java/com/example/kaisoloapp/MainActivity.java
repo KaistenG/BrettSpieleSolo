@@ -83,24 +83,26 @@ public class MainActivity extends AppCompatActivity {
         String ort = loginOrt.getText().toString().trim();
         String handynummer = loginHandynummer.getText().toString().trim();
 
+        //Prüfung ob alle Felder ausgefüllt sind, Meldung falls nicht
         if (name.isEmpty() || ort.isEmpty() || handynummer.isEmpty()) {
             Toast.makeText(this, "Bitte alle Felder ausfüllen", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        // Ohne Logindaten bei Firebase einloggen
+        // Ohne Logindaten bei Firebase einloggen (signInAnonymously())
         FirebaseAuth.getInstance().signInAnonymously()
                 .addOnSuccessListener(authResult -> {
                     String uid = authResult.getUser().getUid();
 
-                    //Prüfen, ob bereits Nutzer existieren
+                    //Prüfen, ob Nutzer bereits existiert
                     databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             boolean isFirstUser = !snapshot.exists();
+                            long timestamp = System.currentTimeMillis();
 
                             //Nutzer-Objekt mit isHost setzen
-                            Nutzer neuerNutzer = new Nutzer(name, ort, handynummer, isFirstUser);
+                            Nutzer neuerNutzer = new Nutzer(name, ort, handynummer, isFirstUser, timestamp);
 
                             //Nutzer speichern
                             databaseReference.child(uid).setValue(neuerNutzer)
@@ -135,37 +137,6 @@ public class MainActivity extends AppCompatActivity {
     }
 }
 
-/* ALTE NUTZERDATEN ZUSAMMENSTELLEN
-                //Nutzerdaten zusammenstellen
-                Map<String, Object> nutzerDaten = new HashMap<>();
-                nutzerDaten.put("name", name);
-                nutzerDaten.put("ort", ort);
-                nutzerDaten.put("handynummer", handynummer);
-
-                databaseReference.child(uid).setValue(nutzerDaten)
-                        .addOnSuccessListener(unused -> {
-                            SharedPreferences prefsUid = getSharedPreferences("AppPrefs", MODE_PRIVATE);
-                            prefsUid.edit()
-                                    .putBoolean("isRegistered", true)
-                                    .putString("uid", uid)
-                                    .apply();
-
-                            Toast.makeText(MainActivity.this, "Eingeloggt!", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(MainActivity.this, HauptActivity.class));
-                            finish();
-                        })
-                        .addOnFailureListener(e -> {
-                            Log.e("Firebase", "Fehler beim Speichern: ", e);
-                            Toast.makeText(MainActivity.this, "Fehler beim Speichern", Toast.LENGTH_SHORT).show();
-                        });
-
-                    }).addOnFailureListener(e -> {
-                        Log.e("Firebase", "Fehler beim Login: ", e);
-                        Toast.makeText(MainActivity.this, "Fehler beim Login", Toast.LENGTH_SHORT).show();
-                    });
-
-        }
-} */
 
 
 

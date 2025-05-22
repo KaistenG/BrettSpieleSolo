@@ -44,6 +44,7 @@ public class SpieleActivity extends BaseActivity {
         // Firebase User
         currentUser = FirebaseAuth.getInstance().getCurrentUser();
 
+        //Liste der Spiele
         recyclerView = findViewById(R.id.spieleRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new SpieleAdapter(spieleListe, spieleRef, userVotesRef, currentUser);
@@ -73,6 +74,7 @@ public class SpieleActivity extends BaseActivity {
         });
     }
 
+    // Fenster das sich öffnet beim anklicken des + buttons
     private void zeigeSpielHinzufuegenDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Neues Spiel hinzufügen");

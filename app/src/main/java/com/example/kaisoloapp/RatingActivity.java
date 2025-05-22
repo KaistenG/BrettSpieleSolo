@@ -18,7 +18,7 @@ public class RatingActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rating);
 
-        // NEU: Toolbar initialisieren
+        //Toolbar initialisieren
         Toolbar toolbar = findViewById(R.id.navigationToolbar);
         setSupportActionBar(toolbar);
 
