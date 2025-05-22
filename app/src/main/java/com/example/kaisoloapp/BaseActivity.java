@@ -318,4 +318,37 @@ private void proceedLogout(String uid) {
            }
        });
    }
+
+   // Methode zum Anzeigen des höchstgevoteten Spiels auf der HauptActivity
+   protected void zeigeSpielMitMeistenVotes(final TextView textViewTopGame) {
+       DatabaseReference spieleRef = FirebaseDatabase.getInstance().getReference("spiele");
+
+       ValueEventListener topGameListener = new ValueEventListener() {
+           @Override
+           public void onDataChange(@NonNull DataSnapshot snapshot) {
+               String topSpielName = "Noch keine Spiele vorhanden";
+               int maxVotes = -1;
+
+               for (DataSnapshot spielSnapshot : snapshot.getChildren()) {
+                   String name = spielSnapshot.child("name").getValue(String.class);
+                   Integer votes = spielSnapshot.child("votes_count").getValue(Integer.class);
+
+                   if (name != null && votes != null && votes > maxVotes) {
+                       maxVotes = votes;
+                       topSpielName = name + " (" + votes + " Stimmen)";
+                   }
+               }
+
+               textViewTopGame.setText("Top-Spiel: " + topSpielName);
+           }
+
+           @Override
+           public void onCancelled(@NonNull DatabaseError error) {
+               textViewTopGame.setText("Fehler beim Laden des Top-Spiels");
+               Log.e("Firebase", "Fehler beim Laden der Spiele", error.toException());
+           }
+       };
+
+       spieleRef.addValueEventListener(topGameListener);
+   }
 }

@@ -61,6 +61,7 @@ public class HauptActivity extends BaseActivity {
 
     private Button btnBewertungStarten;
 
+    private TextView textViewTopGame;
     private ValueEventListener hostStatusListener; // ✅ NEU: Für Live-Update des Host-Status
 
 
@@ -101,6 +102,10 @@ public class HauptActivity extends BaseActivity {
 
         //Initalisiere den Eventabschlussbutton
         btnBewertungStarten = findViewById(R.id.btnBewertungStarten);
+
+        //Initialisiere die TextView für das meistgevotete Spiel
+        textViewTopGame = findViewById(R.id.textViewTopGame);
+        zeigeSpielMitMeistenVotes(textViewTopGame);
 
         // Initialisieren der Toolbar
         Toolbar toolbar = findViewById(R.id.navigationToolbar);
