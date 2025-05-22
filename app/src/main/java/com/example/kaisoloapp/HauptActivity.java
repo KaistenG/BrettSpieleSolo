@@ -350,13 +350,13 @@ public class HauptActivity extends BaseActivity {
         // dynamisch formatiertes Datum
         SimpleDateFormat sdf = new SimpleDateFormat("dd. MMMM yyyy", Locale.GERMAN);
         String sdfDate = sdf.format(nextMeetingDate.getTime());
-        textViewDate.setText("Datum: " + sdfDate);
+        textViewDate.setText(sdfDate);
 
         // dynamisch formatierte Uhrzeit
         SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm 'Uhr'", Locale.GERMAN);
         timeFormat.setTimeZone(TimeZone.getTimeZone("Europe/Berlin")); // Zeitzone auf Berlin setzen
         String sdfTime = timeFormat.format(nextMeetingDate.getTime());
-        textViewTime.setText("Uhrzeit: " + sdfTime);
+        textViewTime.setText(sdfTime);
 
         Log.d("DEBUG", "Aufruf ladeUndZeigeGastgeber");
         ladeUndZeigeGastgeber(textViewLocation);

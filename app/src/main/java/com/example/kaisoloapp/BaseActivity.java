@@ -339,7 +339,7 @@ private void proceedLogout(String uid) {
                    }
                }
 
-               textViewTopGame.setText("Top-Spiel: " + topSpielName);
+               textViewTopGame.setText("Spiel: " + topSpielName);
            }
 
            @Override
