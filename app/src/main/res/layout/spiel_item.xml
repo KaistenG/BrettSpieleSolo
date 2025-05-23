@@ -17,26 +17,43 @@
         android:layout_height="wrap_content"
         android:gravity="center_vertical">
 
-        <TextView
-            android:id="@+id/spielName"
-            android:layout_width="0dp"
-            android:layout_weight="2"
-            android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:text="Spielname" />
+        <!-- NEU: Spielbild -->
+        <ImageView
+            android:id="@+id/spielBild"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginEnd="12dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/placeholder"
+            android:contentDescription="@string/game_image" />
 
-        <TextView
-            android:id="@+id/voteCount"
-            android:layout_width="wrap_content"
+        <!-- REST: Spielname, Votes, Buttons -->
+        <LinearLayout
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Votes: 0"
-            android:textSize="16sp"
-            android:layout_marginEnd="8dp"/>
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/spielName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:text="Spielname" />
+
+            <TextView
+                android:id="@+id/voteCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Votes: 0"
+                android:textSize="16sp" />
+        </LinearLayout>
 
         <CheckBox
             android:id="@+id/checkBoxVote"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
+
         <ImageButton
             android:id="@+id/btnDelete"
             android:layout_width="wrap_content"
@@ -46,4 +63,5 @@
             android:contentDescription="@string/game_delete"
             android:layout_marginStart="8dp" />
     </LinearLayout>
+
 </androidx.cardview.widget.CardView>

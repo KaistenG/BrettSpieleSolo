@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.util.Log;
@@ -141,6 +142,24 @@ public class SpieleAdapter extends RecyclerView.Adapter<SpieleAdapter.ViewHolder
                     .setNegativeButton("Abbrechen", null)
                     .show();
         });
+
+        switch (spiel.getName().toLowerCase()) {
+            case "cluedo":
+                holder.spielBild.setImageResource(R.drawable.cluedo);
+                break;
+            case "monopoly":
+                holder.spielBild.setImageResource(R.drawable.monopoly);
+                break;
+            case "uno":
+                holder.spielBild.setImageResource(R.drawable.uno);
+                break;
+            case "scrabble":
+                holder.spielBild.setImageResource(R.drawable.scrabble);
+                break;
+            default:
+                holder.spielBild.setImageResource(R.drawable.placeholder);
+                break;
+        }
     }
 
     @Override
@@ -167,6 +186,7 @@ public class SpieleAdapter extends RecyclerView.Adapter<SpieleAdapter.ViewHolder
         TextView spielName, voteCount;
         CheckBox voteCheckBox;
         ImageButton btnDelete;
+        ImageView spielBild;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -174,6 +194,7 @@ public class SpieleAdapter extends RecyclerView.Adapter<SpieleAdapter.ViewHolder
             voteCount = itemView.findViewById(R.id.voteCount);
             voteCheckBox = itemView.findViewById(R.id.checkBoxVote);
             btnDelete = itemView.findViewById(R.id.btnDelete);
+            spielBild = itemView.findViewById(R.id.spielBild);
         }
     }
 }
