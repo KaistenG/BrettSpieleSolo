@@ -35,7 +35,6 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal">
 
-        <!-- ⭐ Neue RatingBar mit feiner Schrittweite -->
         <RatingBar
             android:id="@+id/ratingBarAvg"
             android:layout_width="wrap_content"
@@ -46,7 +45,6 @@
             android:theme="@style/CustomRatingBar"
             android:layout_marginStart="8dp" />
 
-        <!-- 🔢 Neue TextView für genaue Durchschnittsanzeige -->
         <TextView
             android:id="@+id/textAverageValue"
             android:layout_width="wrap_content"
