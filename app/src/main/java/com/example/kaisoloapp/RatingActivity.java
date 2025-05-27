@@ -58,11 +58,20 @@ public class RatingActivity extends BaseActivity {
                 eventList.clear();
                 for (DataSnapshot eventSnap : snapshot.getChildren()) {
                     String name = eventSnap.child("host_name").getValue(String.class);
-                    String date = eventSnap.child("date").getValue(String.class);
+                    //String date = eventSnap.child("date").getValue(String.class);
+                    String rawDate = eventSnap.child("date").getValue(String.class);
+                    String formattedDate = rawDate;
+
+                    if (rawDate != null && rawDate.contains(".")) {
+                        String[] parts = rawDate.split("\\.");
+                        if (parts.length == 3) {
+                            formattedDate = parts[0] + "." + parts[1] + "\n" + parts[2];
+                        }
+                    }
                     String id = eventSnap.getKey();
 
-                    if (name != null && date != null && id != null) {
-                        UserEvent userEvent = new UserEvent(name, date, id);
+                    if (name != null && formattedDate != null && id != null) {
+                        UserEvent userEvent = new UserEvent(name, formattedDate, id);
 
                         DataSnapshot ratingsSnap = eventSnap.child("ratings");
                         int sum = 0, count = 0;

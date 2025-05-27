@@ -27,7 +27,19 @@
             android:textColor="#666666"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            />
+            android:maxLines="2"
+            android:ellipsize="none" />
+
+       <!--<TextView
+            android:id="@+id/textDate"
+            android:textSize="14sp"
+            android:textColor="#666666"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:ellipsize="end"
+
+            /> -->
     </LinearLayout>
 
     <LinearLayout
@@ -44,8 +56,8 @@
             android:isIndicator="true"
             android:numStars="5"
             android:stepSize="0.1"
-            android:scaleX="0.5"
-            android:scaleY="0.5"
+            android:scaleX="0.8"
+            android:scaleY="0.8"
             android:theme="@style/CustomRatingBar"
             android:layout_marginStart="8dp" />
 
