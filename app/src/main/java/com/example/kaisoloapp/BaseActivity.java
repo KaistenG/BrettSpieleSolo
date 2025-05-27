@@ -2,10 +2,13 @@ package com.example.kaisoloapp;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.Context;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -25,7 +28,12 @@ import com.google.firebase.database.MutableData;
 import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 // ACTIVITY ZUM METHODEN AUSLAGERN
@@ -305,6 +313,8 @@ private void proceedLogout(String uid) {
                    Map<String, Object> event = new HashMap<>();
                    event.put("created_by", aktuellerHostUid);
                    event.put("timestamp", eventTimestamp);
+                   event.put("date", new SimpleDateFormat("dd.MM.yyyy", Locale.getDefault()).format(new Date(eventTimestamp)));
+                   event.put("host_name", aktuellerNutzer.getName());
                    // event.put("status", "pending"); // Optional
                    eventRef.child(String.valueOf(eventTimestamp)).setValue(event);
 
@@ -351,4 +361,6 @@ private void proceedLogout(String uid) {
 
        spieleRef.addValueEventListener(topGameListener);
    }
+
+
 }
