@@ -1,5 +1,5 @@
 <resources>
-    <style name="CustomRatingBar" parent="Theme.AppCompat.Light">
+    <style name="CustomRatingBar">
         <item name="colorControlActivated">#FFD700</item> <!-- Gold -->
     </style>
 </resources>
