@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -22,9 +21,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -57,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
                     if (snapshot.exists()) {
                         startActivity(new Intent(MainActivity.this, HauptActivity.class));
                     } else {
-                        prefs.edit().clear().apply(); // UID gelöscht → lokale Daten löschen
+                        prefs.edit().clear().apply(); // UID gelöscht,lokale Daten löschen
                     }
                 }
 
@@ -101,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
                             boolean isFirstUser = !snapshot.exists();
                             long timestamp = System.currentTimeMillis();
 
-                            //Nutzer-Objekt mit isHost setzen
+                            //Nutzer-Objekt mit isHst setzen
                             Nutzer neuerNutzer = new Nutzer(name, ort, handynummer, isFirstUser, timestamp);
 
                             //Nutzer speichern

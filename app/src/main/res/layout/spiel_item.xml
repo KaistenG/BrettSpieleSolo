@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:gravity="center_vertical">
 
-        <!-- NEU: Spielbild -->
+        <!-- Spielbild -->
         <ImageView
             android:id="@+id/spielBild"
             android:layout_width="64dp"
@@ -27,7 +27,7 @@
             android:src="@drawable/placeholder"
             android:contentDescription="@string/game_image" />
 
-        <!-- REST: Spielname, Votes, Buttons -->
+        <!-- Spielname, Votes, Buttons -->
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"

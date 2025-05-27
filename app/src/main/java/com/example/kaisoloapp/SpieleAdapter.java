@@ -8,7 +8,6 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.util.Log;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -127,7 +126,7 @@ public class SpieleAdapter extends RecyclerView.Adapter<SpieleAdapter.ViewHolder
                     @Override
                     public void onCancelled(DatabaseError error) {}
                 });
-        // 🗑️ Spiel löschen
+        //Spiel löschen
         holder.btnDelete.setOnClickListener(v -> {
             new AlertDialog.Builder(v.getContext())
                     .setTitle("Spiel löschen")

@@ -17,7 +17,7 @@ public class RatingActivity extends BaseActivity {
 
     private List<UserEvent> eventList = new ArrayList<>();
     private UserEventAdapter adapter;
-    private ValueEventListener eventsListener; // 🔁 Live Listener zum Entfernen merken
+    private ValueEventListener eventsListener;
     private DatabaseReference eventsRef;
 
     @Override
@@ -34,7 +34,7 @@ public class RatingActivity extends BaseActivity {
         adapter = new UserEventAdapter(this, eventList);
         listView.setAdapter(adapter);
 
-        // 🔁 Live-Daten laden
+        //Live-Daten laden
         ladeEventsInListView();
 
         listView.setOnItemClickListener((parent, view, position, id) -> {
@@ -51,7 +51,7 @@ public class RatingActivity extends BaseActivity {
         eventsRef = FirebaseDatabase.getInstance().getReference("events");
         String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-        // 🔄 Echtzeit-Listener
+        //Echtzeit-Listener zur direkt aktualisierung
         eventsListener = eventsRef.orderByChild("timestamp").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -85,7 +85,7 @@ public class RatingActivity extends BaseActivity {
                         eventList.add(userEvent);
                     }
                 }
-                adapter.notifyDataSetChanged(); // 🔁 Liste aktualisieren
+                adapter.notifyDataSetChanged(); //Liste aktualisieren
             }
 
             @Override
@@ -129,7 +129,7 @@ public class RatingActivity extends BaseActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        // 🧹 Listener entfernen, um Speicherlecks zu vermeiden
+        //Listener entfernen um Speicherlecks zu vermeiden
         if (eventsListener != null && eventsRef != null) {
             eventsRef.removeEventListener(eventsListener);
         }

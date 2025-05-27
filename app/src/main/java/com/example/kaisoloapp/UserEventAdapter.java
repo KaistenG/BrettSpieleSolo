@@ -24,12 +24,12 @@ public class UserEventAdapter extends ArrayAdapter<UserEvent> {
         TextView textHost = convertView.findViewById(R.id.textHostName);
         TextView textDate = convertView.findViewById(R.id.textDate);
         RatingBar ratingBar = convertView.findViewById(R.id.ratingBarAvg);
-        TextView textAvgValue = convertView.findViewById(R.id.textAverageValue); // 🔢 Durchschnittsanzeige
+        TextView textAvgValue = convertView.findViewById(R.id.textAverageValue); //Durchschnittsanzeige
 
         textHost.setText(event.host_name);
         textDate.setText(event.date);
         ratingBar.setRating(event.averageRating); // ⭐ Durchschnitt setzen
-        textAvgValue.setText(String.format(Locale.US, "%.1f", event.averageRating)); // 🔢 Nachkommastelle
+        textAvgValue.setText(String.format(Locale.US, "%.1f", event.averageRating)); //Nachkommastelle
 
         // ✅ Ausgrauen wenn bewertet
         convertView.setAlpha(event.userHasRated ? 0.3f : 1.0f);

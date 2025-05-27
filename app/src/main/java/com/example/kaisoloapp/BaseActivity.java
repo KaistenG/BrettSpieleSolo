@@ -2,13 +2,10 @@ package com.example.kaisoloapp;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.Context;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -29,10 +26,10 @@ import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
+
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
+
 import java.util.Locale;
 import java.util.Map;
 

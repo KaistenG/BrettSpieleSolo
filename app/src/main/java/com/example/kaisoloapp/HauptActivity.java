@@ -2,34 +2,20 @@ package com.example.kaisoloapp;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 import java.util.TimeZone;
 
 import android.Manifest;
@@ -62,7 +48,7 @@ public class HauptActivity extends BaseActivity {
     private Button btnBewertungStarten;
 
     private TextView textViewTopGame;
-    private ValueEventListener hostStatusListener; // ✅ NEU: Für Live-Update des Host-Status
+    private ValueEventListener hostStatusListener; //Für Live-Update des Host-Status
 
 
     // Firebase Listener Referenz für Nutzerdaten (damit man Listener später ggf. entfernen kann)
@@ -177,7 +163,7 @@ public class HauptActivity extends BaseActivity {
                     Log.e("Firebase", "Host-Status konnte nicht gelesen werden", error.toException());
                 }
             };
-            userRef.addValueEventListener(hostStatusListener); // ÄNDERUNG Ende
+            userRef.addValueEventListener(hostStatusListener);
 
             //Listener für den Ort des Nutzers hinzufügen
             userLocationListener = new ValueEventListener() {

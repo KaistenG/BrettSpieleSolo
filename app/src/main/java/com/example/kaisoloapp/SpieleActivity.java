@@ -85,7 +85,6 @@ public class SpieleActivity extends BaseActivity {
         input.setImeOptions(EditorInfo.IME_ACTION_DONE); // Enter = Done
         builder.setView(input);
 
-        // Wichtig: zuerst POSITIV setzen
         builder.setPositiveButton("Hinzufügen", (dialog, which) -> {
 
             String name = input.getText().toString().trim();
@@ -96,7 +95,6 @@ public class SpieleActivity extends BaseActivity {
             }
         });
 
-        // Danach NEGATIV
         builder.setNegativeButton("Abbrechen", (dialog, which) -> dialog.cancel());
 
         builder.show(); // Zeigt den Dialog an
