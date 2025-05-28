@@ -65,7 +65,7 @@ public class RatingActivity extends BaseActivity {
                     if (rawDate != null && rawDate.contains(".")) {
                         String[] parts = rawDate.split("\\.");
                         if (parts.length == 3) {
-                            formattedDate = parts[0] + "." + parts[1] + "\n" + parts[2];
+                            formattedDate = parts[0] + "." + parts[1] + "." + parts[2];
                         }
                     }
                     String id = eventSnap.getKey();
