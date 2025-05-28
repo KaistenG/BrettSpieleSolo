@@ -27,13 +27,7 @@
             android:textColor="#666666"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
-    </LinearLayout>
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal">
 
         <RatingBar
             android:id="@+id/ratingBarAvg"
